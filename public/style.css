@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: gray;
+}
+
+.root {
+    padding-bottom: 1em;
+}
+
+video {
+    margin: 2em;
+    border-radius: 5px;
+    border: 2px solid blue;
+}
+
+.table {
+    margin-top: 1em;
+    table-layout: fixed;
+    overflow: auto;
+    font-size: .8rem;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    padding: 0 5px;
+}
+
+.table td {
+    background: yellowgreen;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+img {
+    width: 50%;
+}

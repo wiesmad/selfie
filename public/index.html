@@ -4,76 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-    <title>Selfie App</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    <title>The Weather</title>
 </head>
 <body>
     
-    <h1>Data Selfie App</h1>
+    <h1>The Weather</h1>
 
-    <a href="index.html">enter</a> | <a href="all.html">list</a>
+    <a href="/index.html">check in</a> | <a href="/logs">view check in</a>
 
     <p>latitude: <span id="lat"></span>°<br /> <!-- ctrl + 0176 -->
        longitude: <span id="lon"></span>°</p>
-    <label for="desc">description: </label>
-    <input id="desc">
-    <button id="button">Submit</button>
 
-    <script> 
-        function setup() {
-            noCanvas();    
-            const video = createCapture(VIDEO);
-            video.size(320, 240);
+    <table class="table">
+        <tr>
+            <th>City</th>
+            <th>Now</th>
+            <th>Temperature</th>
+            <th>Pressure</th>
+            <th>Humidity</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Air Q</th>
+        </tr>
+        <tr id="data">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
-            let lat, lon;
-            const btn = document.getElementById('button');
-            btn.addEventListener('click', async event => {
-                const desc = document.getElementById('desc').value;
-                video.loadPixels();
-                const image64 = video.canvas.toDataURL();
-                const data = { lat, lon, desc, image64 };
-                const options =  {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-
-                const response = await fetch('/api', options);
-                const json = await response.json();
-                console.log(json);  
-            });
-
-            if('geolocation' in navigator) {
-                console.log('geo available');
-                navigator.geolocation.getCurrentPosition(pos => {
-                    lat = pos.coords.latitude;
-                    lon = pos.coords.longitude;
-                    console.log(lat, lon);
-                    document.getElementById('lat').textContent = lat;
-                    document.getElementById('lon').textContent = lon;      
-                });      
-            } else {
-                console.log('geo not available');
-            }
-    };
-
-        
-    </script> 
-    <style>
-        body {
-            background-color: gray;
-        }
-        .root {
-            padding-bottom: 1em;
-        }
-        video {
-            margin: 2em;
-            border-radius: 5px;
-            border: 2px solid blue;
-        }
-    </style>
-
+    <script src="sketch.js"></script> 
 </body>
 </html>
