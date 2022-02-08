@@ -1,9 +1,10 @@
 const express = require('express');
 const { json } = require('express/lib/response');
 const Datastore = require('nedb');
-const app = express();
 
-app.listen(3000, () => console.log('listening at 3000'));
+const app = express();
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log('server up and running at 3000'));
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
 
